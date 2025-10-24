@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name – Portfolio</title>
+  <meta name="description" content="Personal portfolio of Your Name – projects, skills, achievements, and contact." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b0d10;      /* dark background */
+      --bg-soft:#101318;
+      --text:#e5e7eb;     /* light text */
+      --text-dim:#9ca3af;
+      --card:#141922;
+      --accent:#3b82f6;   /* blue */
+      --accent-2:#22d3ee; /* cyan */
+      --border:#1f2937;
+      --chip:#0f172a;
+      --ok:#10b981; --warn:#f59e0b; --bad:#ef4444;
+    }
+    :root.light{
+      --bg:#f6f8fb; --bg-soft:#ffffff; --text:#0b1020; --text-dim:#475569; --card:#ffffff; --accent:#2563eb; --accent-2:#0891b2; --border:#e5e7eb; --chip:#eef2ff;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+    header.nav{
+      position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(8px);
+      background:color-mix(in srgb, var(--bg), transparent 35%);
+      border-bottom:1px solid var(--border);
+    }
+    .nav .inner{display:flex;gap:16px;align-items:center;justify-content:space-between;padding:12px 28px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
+    .brand .dot{width:10px;height:10px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 0 18px color-mix(in srgb, var(--accent), transparent 50%)}
+    .nav a{color:var(--text);opacity:.9}
+    .nav-links{display:flex;gap:18px;align-items:center}
+    .btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);background:var(--bg-soft);color:var(--text);padding:10px 14px;border-radius:12px;font-weight:600;cursor:pointer}
+    .btn:hover{border-color:color-mix(in srgb, var(--accent), var(--border) 40%)}
+    .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));border-color:transparent;color:white}
+    .btn.ghost{background:transparent}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;padding:48px 0}
+    .hero h1{font-size:42px;line-height:1.1;margin:0 0 12px;font-weight:900}
+    .subtitle{font-size:18px;color:var(--text-dim)}
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+    .chip{padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:var(--chip);color:var(--text);font-weight:600;font-size:13px}
+    .hero-card{background:radial-gradient(1000px 400px at 20% -10%, color-mix(in srgb, var(--accent), transparent 75%), transparent),var(--card);border:1px solid var(--border);padding:16px;border-radius:16px;display:grid;place-items:center}
+    .hero-card .avatar{width:190px;height:190px;border-radius:24px;background:#0f172a;border:1px solid var(--border);display:grid;place-items:center;overflow:hidden}
+    .avatar span{opacity:.5}
+
+    /* Sections */
+    section{padding:14px 0 36px}
+    .section-title{display:flex;align-items:center;gap:10px;margin:0 0 16px}
+    .section-title h2{margin:0;font-size:24px}
+    .section-title .bar{width:8px;height:24px;border-radius:4px;background:linear-gradient(180deg,var(--accent),var(--accent-2))}
+
+    /* Cards grid */
+    .grid{display:grid;gap:16px}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+    @media (max-width: 980px){.hero{grid-template-columns:1fr}.grid.cols-3{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width: 640px){.grid.cols-3,.grid.cols-2{grid-template-columns:1fr}}
+
+    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
+    .card:hover{border-color:color-mix(in srgb, var(--accent), var(--border) 35%)}
+    .card .thumb{width:100%;aspect-ratio:16/9;border-radius:12px;background:#0b1220;border:1px solid var(--border);display:grid;place-items:center;overflow:hidden}
+    .card .thumb img{width:100%;height:100%;object-fit:cover}
+    .card h3{margin:6px 0 4px}
+    .muted{color:var(--text-dim);font-size:14px}
+    .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:var(--bg-soft)}
+
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    @media (max-width: 900px){.two-col{grid-template-columns:1fr}}
+
+    footer{padding:40px 0 80px;color:var(--text-dim)}
+    .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;background:var(--bg-soft);border:1px solid var(--border);padding:0 6px;border-radius:6px}
+  </style>
+</head>
+<body>
+  <!-- ===================== CONFIG: Edit only the JSON below ===================== -->
+  <script>
+  const siteConfig = {
+    name: "Your Name",
+    role: "Embedded Systems & Robotics Engineer",
+    location: "Colombo, Sri Lanka",
+    email: "you@example.com",
+    resume_url: "assets/CV.pdf", // put your PDF at /assets/CV.pdf
+    avatar_url: "assets/avatar.jpg", // put a square image at /assets/avatar.jpg
+    socials: {
+      github: "https://github.com/yourhandle",
+      linkedin: "https://www.linkedin.com/in/yourhandle/",
+      twitter: "https://x.com/yourhandle",
+      website: "https://pulztronics.com"
+    },
+    summary: "I build robust embedded systems, omni‑directional robots, and FPGA‑accelerated compute for the edge. Passionate about PCB design, sensor fusion, and turning prototypes into products.",
+    skills: [
+      { group:"Hardware", items:["PCB Design (Altium)", "MCUs (SAM3X8E, STM32, ESP32)", "IMUs (BNO055)", "Motor Control", "SLA 3D Printing"] },
+      { group:"Software", items:["C/C++", "Python", "Java", "MATLAB", "PlatformIO", "ROS/ROS2"] },
+      { group:"Digital / AI", items:["SystemVerilog (IEEE‑754 FPU)", "FPGA", "CNN @ Edge", "OpenCV"] },
+      { group:"Tools", items:["Git/GitHub", "VS Code", "LTspice", "SolidWorks"] }
+    ],
+    projects: [
+      {
+        title:"Omni‑Directional Robot Platform",
+        date:"2025",
+        description:"Mecanum drive with adaptive EKF sensor fusion (BNO055 + encoders), SAM3X8E main MCU, STM32 motor controller over UART, BT telemetry.",
+        image:"assets/projects/omni.jpg",
+        link:"https://github.com/yourhandle/omni-robot",
+        tags:["Robotics","EKF","Embedded"]
+      },
+      {
+        title:"Medibox – ESP32 Medication Reminder",
+        date:"2025",
+        description:"ESP32, OLED UI, DHT22 logging, buzzer + alarm, low‑power modes, enclosure designed for SLA printing.",
+        image:"assets/projects/medibox.jpg",
+        link:"https://github.com/yourhandle/medibox",
+        tags:["ESP32","IoT","Healthcare"]
+      },
+      {
+        title:"Micromouse V4 (Tiny Form Factor)",
+        date:"2025",
+        description:"STM32‑based controller, IR sensor array, custom algorithms for wall following and shortest path; ultra‑compact PCB.",
+        image:"assets/projects/micromouse.jpg",
+        link:"https://github.com/yourhandle/MicromouseV4",
+        tags:["STM32","Robotics"]
+      },
+      {
+        title:"IEEE‑754 32‑bit FPU (Adder/Sub/Div)",
+        date:"2025",
+        description:"SystemVerilog modules with subnormal handling, sticky/guard/round bits, LZC; validated in simulation.",
+        image:"assets/projects/fpu.jpg",
+        link:"https://github.com/yourhandle/fpu32",
+        tags:["FPGA","SystemVerilog"]
+      },
+      {
+        title:"VEGA Edge AI Accelerator",
+        date:"2025",
+        description:"AI app on a resource‑constrained edge device with VEGA processor + custom acceleration IP for CNNs.",
+        image:"assets/projects/vega.jpg",
+        link:"https://github.com/yourhandle/vega-edge-ai",
+        tags:["AI","FPGA","Edge"]
+      },
+      {
+        title:"Bioplastic – Seaweed Packaging",
+        date:"2025",
+        description:"R&D into seaweed‑based biodegradable films; prototyping process parameters and sustainability metrics.",
+        image:"assets/projects/bioplastic.jpg",
+        link:"https://github.com/yourhandle/bioplastic",
+        tags:["Sustainability","Materials"]
+      }
+    ],
+    achievements:[
+      "DVCon India 2025 Design Contest – Team lead for VEGA Edge AI",
+      "Built omni‑wheel robot with ±2 cm indoor tracking error",
+      "Published tutorials on analog filters & H‑bridges"
+    ],
+    publications:[
+      {title:"Analog Filters for EDU – Practical Guide", venue:"Pulztronics EDU", year:2025, link:"#"}
+    ]
+  };
+  </script>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="nav">
+    <div class="inner">
+      <div class="brand"><span class="dot"></span><span id="brand-name">Your Name</span></div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#contact">Contact</a>
+        <button class="btn ghost" id="themeBtn" title="Toggle theme">🌓</button>
+        <a id="resumeBtn" class="btn" href="#" target="_blank" rel="noopener">📄 Resume</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <div class="container">
+    <section class="hero">
+      <div>
+        <h1 id="hero-title">Your Name</h1>
+        <div class="subtitle" id="hero-role">Role • Location</div>
+        <div class="chips" id="hero-socials"></div>
+        <p id="hero-summary" class="muted" style="font-size:16px"></p>
+        <div class="chips">
+          <a class="btn primary" id="ctaProjects" href="#projects">See Projects ↓</a>
+          <a class="btn" id="ctaContact" href="#contact">Contact Me</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="avatar" id="avatar">
+          <span>Upload <span class="kbd">/assets/avatar.jpg</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section id="about">
+      <div class="section-title"><span class="bar"></span><h2>About</h2></div>
+      <div class="two-col">
+        <div>
+          <p id="about-text" class="muted"></p>
+        </div>
+        <div class="card">
+          <strong>Quick Info</strong>
+          <div class="tags" id="quick-info"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SKILLS ===================== -->
+    <section id="skills">
+      <div class="section-title"><span class="bar"></span><h2>Skills</h2></div>
+      <div class="grid cols-3" id="skills-grid"></div>
+    </section>
+
+    <!-- ===================== PROJECTS ===================== -->
+    <section id="projects">
+      <div class="section-title"><span class="bar"></span><h2>Projects</h2></div>
+      <div class="grid cols-3" id="projects-grid"></div>
+    </section>
+
+    <!-- ===================== ACHIEVEMENTS ===================== -->
+    <section id="achievements">
+      <div class="section-title"><span class="bar"></span><h2>Achievements</h2></div>
+      <div class="grid cols-2" id="achievements-grid"></div>
+    </section>
+
+    <!-- ===================== PUBLICATIONS (Optional) ===================== -->
+    <section id="publications" style="display:none">
+      <div class="section-title"><span class="bar"></span><h2>Publications</h2></div>
+      <div class="grid cols-2" id="pubs-grid"></div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section id="contact">
+      <div class="section-title"><span class="bar"></span><h2>Contact</h2></div>
+      <div class="card">
+        <p>Feel free to reach out for interviews, collaborations, or speaking opportunities.</p>
+        <div class="tags" id="contact-links"></div>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> <span id="footer-name">Your Name</span>. Built with plain HTML/CSS/JS. Toggle theme with the moon in the navbar. Host this file anywhere (GitHub Pages, Netlify, Vercel, your domain).</div>
+    </footer>
+  </div>
+
+  <!-- ===================== SCRIPTS ===================== -->
+  <script>
+    // Theme toggle with localStorage
+    const applyTheme = (t)=>{
+      if(t==='light'){document.documentElement.classList.add('light')}else{document.documentElement.classList.remove('light')}
+      localStorage.setItem('theme',t)
+    }
+    const saved = localStorage.getItem('theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    applyTheme(saved);
+    document.getElementById('themeBtn').onclick = ()=>{applyTheme(document.documentElement.classList.contains('light')?'dark':'light')}
+
+    // Populate from siteConfig
+    const h = (sel)=>document.querySelector(sel);
+    const grid = (id)=>document.getElementById(id);
+
+    // Brand & hero
+    h('#brand-name').textContent = siteConfig.name;
+    h('#hero-title').textContent = siteConfig.name;
+    h('#hero-role').textContent = `${siteConfig.role} • ${siteConfig.location}`;
+    h('#hero-summary').textContent = siteConfig.summary;
+    h('#resumeBtn').href = siteConfig.resume_url;
+
+    // Avatar
+    if (siteConfig.avatar_url) {
+      const img = new Image();
+      img.loading = 'lazy';
+      img.src = siteConfig.avatar_url;
+      img.alt = `${siteConfig.name} headshot`;
+      img.style.width = '100%';
+      img.style.height = '100%';
+      img.style.objectFit = 'cover';
+      const box = h('#avatar');
+      box.innerHTML = '';
+      box.appendChild(img);
+    }
+
+    // Social chips in hero
+    const socialIcon = (k)=>({
+      github:'<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.22.09 1.87 1.26 1.87 1.26 1.08 1.86 2.83 1.32 3.52 1.01.11-.78.42-1.32.77-1.62-2.66-.3-5.46-1.33-5.46-5.94 0-1.31.47-2.38 1.25-3.22-.13-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.25 2.87.12 3.17.78.84 1.24 1.91 1.24 3.22 0 4.62-2.8 5.63-5.47 5.93.43.36.82 1.07.82 2.16v3.2c0 .32.22.7.83.58A12 12 0 0 0 12 .5"/></svg>',
+      linkedin:'<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67H9.34V9H12.7v1.56h.05c.47-.89 1.62-1.83 3.34-1.83 3.57 0 4.23 2.35 4.23 5.41v6.31zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>',
+      twitter:'<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 5.92c-.77.35-1.6.58-2.46.69a4.27 4.27 0 0 0 1.87-2.36 8.52 8.52 0 0 1-2.7 1.03A4.25 4.25 0 0 0 11.1 8.3a12.08 12.08 0 0 1-8.77-4.45 4.25 4.25 0 0 0 1.32 5.68 4.23 4.23 0 0 1-1.93-.53v.05c0 2.06 1.47 3.78 3.42 4.18-.36.1-.74.16-1.13.16-.28 0-.55-.03-.81-.08a4.26 4.26 0 0 0 3.97 2.95 8.52  8.52 0 0 1-5.28 1.82c-.34 0-.69-.02-1.02-.06A12.03 12.03 0 0 0 9.2 20c7.54 0 11.67-6.25 11.67-11.67 0-.18 0-.36-.01-.55A8.3 8.3 0 0 0 22 5.92z"/></svg>',
+      website:'<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2zm7.93 9h-3.22a15.5 15.5 0 0 0-1.2-5.02A8.02 8.02 0 0 1 19.93 11zM12 4c.87 0 2.23 1.84 2.95 5H9.05C9.77 5.84 11.13 4 12 4zM8.35 6.98A15.5 15.5 0 0 0 7.29 11H4.07a8.02 8.02 0 0 1 4.28-4.02zM4.07 13h3.22c.22 1.73.7 3.5 1.4 5.02A8.02 8.02 0 0 1 4.07 13zM12 20c-.87 0-2.23-1.84-2.95-5h5.9C14.23 18.16 12.87 20 12 20zm3.65-2.02A15.5 15.5 0 0 0 16.71 13h3.22a8.02 8.02 0 0 1-4.28 4.98z"/></svg>'
+    })[k] || '🔗';
+
+    const socials = siteConfig.socials || {};
+    const heroSocials = h('#hero-socials');
+    Object.entries(socials).forEach(([k,v])=>{
+      if(!v) return;
+      const a = document.createElement('a');
+      a.className='chip'; a.href=v; a.target='_blank'; a.rel='noopener';
+      a.innerHTML = socialIcon(k)+ ' ' + k;
+      heroSocials.appendChild(a);
+    })
+
+    // About quick info
+    h('#about-text').textContent = siteConfig.summary;
+    const qi = [siteConfig.role, siteConfig.location, siteConfig.email].filter(Boolean);
+    const qiWrap = h('#quick-info');
+    qi.forEach(t=>{const s=document.createElement('span'); s.className='chip'; s.textContent=t; qiWrap.appendChild(s)});
+
+    // Skills
+    const skillsWrap = grid('skills-grid');
+    siteConfig.skills.forEach(sg=>{
+      const c = document.createElement('div'); c.className='card';
+      const h3 = document.createElement('h3'); h3.textContent = sg.group; c.appendChild(h3);
+      const list = document.createElement('div'); list.className='tags';
+      sg.items.forEach(it=>{const t=document.createElement('span');t.className='tag';t.textContent=it;list.appendChild(t)});
+      c.appendChild(list); skillsWrap.appendChild(c);
+    })
+
+    // Projects
+    const projWrap = grid('projects-grid');
+    siteConfig.projects.forEach(p=>{
+      const c = document.createElement('div'); c.className='card';
+      const thumb = document.createElement('div'); thumb.className='thumb';
+      if(p.image){ const img=new Image(); img.loading='lazy'; img.src=p.image; img.alt=p.title; thumb.appendChild(img);} else {thumb.textContent='Add image → '+p.title}
+      c.appendChild(thumb);
+      const h3 = document.createElement('h3'); h3.textContent=p.title; c.appendChild(h3);
+      const m=document.createElement('div'); m.className='muted'; m.textContent=p.date || ''; c.appendChild(m);
+      const d=document.createElement('p'); d.className='muted'; d.textContent=p.description; c.appendChild(d);
+      if(p.tags && p.tags.length){ const tg=document.createElement('div'); tg.className='tags'; p.tags.forEach(t=>{const el=document.createElement('span'); el.className='tag'; el.textContent=t; tg.appendChild(el)}); c.appendChild(tg); }
+      const row=document.createElement('div'); row.style.marginTop='6px';
+      if(p.link){ const a=document.createElement('a'); a.href=p.link; a.target='_blank'; a.rel='noopener'; a.className='btn'; a.textContent='View project'; row.appendChild(a); }
+      c.appendChild(row);
+      projWrap.appendChild(c);
+    })
+
+    // Achievements
+    const achWrap = grid('achievements-grid');
+    siteConfig.achievements.forEach((a,i)=>{
+      const c = document.createElement('div'); c.className='card';
+      const h3=document.createElement('h3'); h3.textContent='• '+a; c.appendChild(h3);
+      achWrap.appendChild(c);
+    })
+
+    // Publications (optional)
+    if(siteConfig.publications && siteConfig.publications.length){
+      document.getElementById('publications').style.display='block';
+      const pb = grid('pubs-grid');
+      siteConfig.publications.forEach(p=>{
+        const c=document.createElement('div'); c.className='card';
+        const h3=document.createElement('h3'); h3.textContent=p.title; c.appendChild(h3);
+        const d=document.createElement('div'); d.className='muted'; d.textContent=`${p.venue} • ${p.year}`; c.appendChild(d);
+        if(p.link){const a=document.createElement('a'); a.href=p.link; a.className='btn'; a.target='_blank'; a.rel='noopener'; a.textContent='View'; c.appendChild(a)}
+        pb.appendChild(c);
+      })
+    }
+
+    // Contact links
+    const cl = h('#contact-links');
+    const addLink=(label,url)=>{ if(!url) return; const a=document.createElement('a'); a.className='chip'; a.href=url; a.target='_blank'; a.rel='noopener'; a.textContent=label; cl.appendChild(a)}
+    addLink('Email', `mailto:${siteConfig.email}`);
+    Object.entries(siteConfig.socials).forEach(([k,v])=>addLink(k.charAt(0).toUpperCase()+k.slice(1), v));
+
+    // Footer
+    h('#year').textContent = new Date().getFullYear();
+    h('#footer-name').textContent = siteConfig.name;
+  </script>
+</body>
+</html>
