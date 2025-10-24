@@ -106,7 +106,7 @@
     socials: {
       github: "https://github.com/Banu-Liyanage",
       linkedin: "https://www.linkedin.com/in/banuka-liyanage-2479542a8/",
-      twitter: "https://x.com/yourhandle",
+      email: "banuka2002liyanage@gmail.com",
       
     },
     summary: "I'm a third year engineering undergraduate in the department of Electronic and Telecommunication Engineering, University of Moratuwa specializing in Electronics and Biomedical Engineering. My interests are mainly in the field of electronics including Digital and Analog Electronics, Robotics and Embedded Systems. Further I have a passion for wearable technologies and eager to learn more.",
@@ -154,29 +154,30 @@
         tags:["Biomedical Engineering","NIR Spectroscopy"]
       },
       {
-        title:"VEGA Edge AI Accelerator",
-        date:"2025",
-        description:"AI app on a resource‑constrained edge device with VEGA processor + custom acceleration IP for CNNs.",
-        image:"assets/projects/vega.jpg",
-        link:"https://github.com/yourhandle/vega-edge-ai",
-        tags:["AI","FPGA","Edge"]
+        title:"Autonomous Robot Design",
+        date:"2024",
+        description:"Our robot was designed to complete a series of challenges inspired by the Stranger Things universe. The competition featured tasks such as line navigation, maze-solving, box manipulation, and terrain traversal. The project involved extensive hardware and software development, with the final product demonstrating the capability to autonomously navigate and solve challenges within a specified arena.",
+        image:"assets/projects/robotdesign.jpg",
+        link:"https://github.com/Banu-Liyanage/EN2533-Pulztrones",
+        tags:["Robotics","Embedded","Algorithms"]
       },
       {
-        title:"Bioplastic – Seaweed based Plastics",
+        title:"Bioplastic Revolution",
         date:"2025",
-        description:"R&D into seaweed‑based biodegradable films; prototyping process parameters and sustainability metrics.",
-        image:"assets/projects/bioplastic.jpg",
-        link:"https://github.com/yourhandle/bioplastic",
-        tags:["Sustainability","Materials"]
+        description:"R&D into seaweed‑based biodegradable plastic and creating an eco-system around our product to reduce plastic pollution",
+        image:"assets/projects/bioplastic.jpeg",
+        link:"https://sahas-eashan.github.io/WEB_bioplastics_revolution_/",
+        tags:["Sustainability","Bio-Plastic Revolution"]
       }
     ],
     achievements:[
-      "DVCon India 2025 Design Contest – Team lead for VEGA Edge AI",
-      "Built omni‑wheel robot with ±2 cm indoor tracking error",
-      "Published tutorials on analog filters & H‑bridges"
+      "First Runner’s up at Sri Lanka Robotics Challenge-2025",
+      "Second Runner's up at Genesiz 2025 organized by KDU",
+      "Finalist of PLEASE Hack competition, selected for top 3 innovations in Sri Lanka.",
+      "First Runner's up at Startup Spark 2025 organized by IESL Sri Lanka"
     ],
-    publications:[
-      {title:"Analog Filters for EDU – Practical Guide", venue:"Pulztronics EDU", year:2025, link:"#"}
+    articles:[
+      {title:"Plastic from Seaweed?", year:2025, link:"https://medium.com/@Banuka_Liyanage/plastic-from-seaweed-69f94c5d71a1"}
     ]
   };
   </script>
@@ -250,8 +251,8 @@
     </section>
 
     <!-- ===================== PUBLICATIONS (Optional) ===================== -->
-    <section id="publications" style="display:none">
-      <div class="section-title"><span class="bar"></span><h2>Publications</h2></div>
+    <section id="articles" style="display:none">
+      <div class="section-title"><span class="bar"></span><h2>Articles</h2></div>
       <div class="grid cols-2" id="pubs-grid"></div>
     </section>
 
@@ -265,7 +266,7 @@
     </section>
 
     <footer>
-      <div>© <span id="year"></span> <span id="footer-name">Your Name</span>. Built with plain HTML/CSS/JS. Toggle theme with the moon in the navbar. Host this file anywhere (GitHub Pages, Netlify, Vercel, your domain).</div>
+      <div>© <span id="year"></span> <span id="footer-name">Banuka_Liyanage</span>. Built with plain HTML/CSS/JS and Hosted on Github Pages.</div>
     </footer>
   </div>
 
@@ -365,11 +366,11 @@
       achWrap.appendChild(c);
     })
 
-    // Publications (optional)
-    if(siteConfig.publications && siteConfig.publications.length){
-      document.getElementById('publications').style.display='block';
+    // articles (optional)
+    if(siteConfig.articles && siteConfig.articles.length){
+      document.getElementById('articles').style.display='block';
       const pb = grid('pubs-grid');
-      siteConfig.publications.forEach(p=>{
+      siteConfig.articles.forEach(p=>{
         const c=document.createElement('div'); c.className='card';
         const h3=document.createElement('h3'); h3.textContent=p.title; c.appendChild(h3);
         const d=document.createElement('div'); d.className='muted'; d.textContent=`${p.venue} • ${p.year}`; c.appendChild(d);
