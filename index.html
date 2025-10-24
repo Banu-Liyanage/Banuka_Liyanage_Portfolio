@@ -98,7 +98,7 @@
   <script>
   const siteConfig = {
     name: "Banuka Liyanage",
-    role: "Embedded Systems & Robotics Engineer",
+    role: "Engineering Undergraduate",
     location: "Colombo, Sri Lanka",
     email: "banuka2002liyanage@gmail.com",
     resume_url: "assets/CV.pdf", // put your PDF at /assets/CV.pdf
@@ -109,45 +109,49 @@
       twitter: "https://x.com/yourhandle",
       
     },
-    summary: "I build robust embedded systems, omni‑directional robots, and FPGA‑accelerated compute for the edge. Passionate about PCB design, sensor fusion, and turning prototypes into products.",
+    summary: "I'm a third year engineering undergraduate in the department of Electronic and Telecommunication Engineering, University of Moratuwa specializing in Electronics and Biomedical Engineering. My interests are mainly in the field of electronics including Digital and Analog Electronics, Robotics and Embedded Systems. Further I have a passion for wearable technologies and eager to learn more.",
     skills: [
-      { group:"Hardware", items:["PCB Design (Altium)", "MCUs (SAM3X8E, STM32, ESP32)", "IMUs (BNO055)", "Motor Control", "SLA 3D Printing"] },
-      { group:"Software", items:["C/C++", "Python", "Java", "MATLAB", "PlatformIO", "ROS/ROS2"] },
-      { group:"Digital / AI", items:["SystemVerilog (IEEE‑754 FPU)", "FPGA", "CNN @ Edge", "OpenCV"] },
-      { group:"Tools", items:["Git/GitHub", "VS Code", "LTspice", "SolidWorks"] }
+      { group:"Hardware", items:["PCB Design (Altium)", "Circuit Design", "Circuit Debugging", "Embedded Systems", "Wearable Devices"] },
+      { group:"Software", items:["C/C++", "Python", "Java", "MATLAB", "OOP", "ROS2-Humble"] },
+      { group:"Digital / AI", items:["SystemVerilog", "FPGA", "CNN", "Machine Learning"] },
+      { group:"Tools", items:["Pytourch", "VS Code", "LTspice", "SolidWorks","Git","Vivado"] }
     ],
     projects: [
       {
         title:"Omni‑Directional Robot Platform",
-        date:"2025",
-        description:"Mecanum drive with adaptive EKF sensor fusion (BNO055 + encoders), SAM3X8E main MCU, STM32 motor controller over UART, BT telemetry.",
+        date:"March-2025",
+        description:"Mecanum drive with adaptive EKF sensor fusion (BNO055 + encoders), SAM3X8E main MCU, STM32 motor controller, BT telemetry.",
         image:"assets/projects/omni.jpg",
-        link:"https://github.com/yourhandle/omni-robot",
-        tags:["Robotics","EKF","Embedded"]
+        link:"https://github.com/PankajaBalasooriya/OmniDirectionalRobot-EN2160",
+        tags:["Robotics","EKF","OmniRobot"],
+        contributions: ["Designed an EKF with adaptive for BNO055 yaw + encoders","Implemented Bluetooth telemetry",
+        "Designed 4-layer Main Controller PCB"]
       },
       {
-        title:"Medibox – ESP32 Medication Reminder",
-        date:"2025",
-        description:"ESP32, OLED UI, DHT22 logging, buzzer + alarm, low‑power modes, enclosure designed for SLA printing.",
-        image:"assets/projects/medibox.jpg",
-        link:"https://github.com/yourhandle/medibox",
-        tags:["ESP32","IoT","Healthcare"]
+        title:"Analog Heart -ECG Monitoring Device",
+        date:"June-2024",
+        description:"Analog Heart is an ECG monitoring device developed that utilizes analog electronics to accurately capture and process cardiac signals",
+        image:"assets/projects/AH.jpg",
+        link:"https://github.com/Banu-Liyanage/AnalogHeart-by-Meditrones",
+        tags:["Analog","ECG","Signal-Processing"],
+        contributions: ["Designed the initial circuit and debugged","Circuit Simulation in LTspice",
+                 "Designed the PCB with proper routing"]
       },
       {
-        title:"Micromouse V4 (Tiny Form Factor)",
+        title:"Micromouse V4",
         date:"2025",
-        description:"STM32‑based controller, IR sensor array, custom algorithms for wall following and shortest path; ultra‑compact PCB.",
+        description:"STM32‑based controller, IR sensor array, Flood-Fill algorithm for maze solving and shortest path; ultra‑compact PCB.",
         image:"assets/projects/micromouse.jpg",
-        link:"https://github.com/yourhandle/MicromouseV4",
-        tags:["STM32","Robotics"]
+        link:"https://github.com/PankajaBalasooriya/MicroMouseV4",
+        tags:["STM32","Robotics","Micromouse"]
       },
       {
-        title:"IEEE‑754 32‑bit FPU (Adder/Sub/Div)",
-        date:"2025",
-        description:"SystemVerilog modules with subnormal handling, sticky/guard/round bits, LZC; validated in simulation.",
-        image:"assets/projects/fpu.jpg",
-        link:"https://github.com/yourhandle/fpu32",
-        tags:["FPGA","SystemVerilog"]
+        title:"Non-Invasive Glucometer Prototype",
+        date:"2024",
+        description:"Developing a NIR Based Non-Invasive Glucometer that allows diabetes patients to check their glucose levels without drawing blood.",
+        image:"assets/projects/aprick.png",
+        link:"https://github.com/MohamedAazir/nirs-glucometer",
+        tags:["Biomedical Engineering","NIR Spectroscopy"]
       },
       {
         title:"VEGA Edge AI Accelerator",
@@ -158,7 +162,7 @@
         tags:["AI","FPGA","Edge"]
       },
       {
-        title:"Bioplastic – Seaweed Packaging",
+        title:"Bioplastic – Seaweed based Plastics",
         date:"2025",
         description:"R&D into seaweed‑based biodegradable films; prototyping process parameters and sustainability metrics.",
         image:"assets/projects/bioplastic.jpg",
@@ -345,6 +349,7 @@
       const h3 = document.createElement('h3'); h3.textContent=p.title; c.appendChild(h3);
       const m=document.createElement('div'); m.className='muted'; m.textContent=p.date || ''; c.appendChild(m);
       const d=document.createElement('p'); d.className='muted'; d.textContent=p.description; c.appendChild(d);
+      if(p.contributions){const title=document.createElement('div'); title.style.fontWeight='700'; title.style.marginTop='6px'; title.textContent='Key contributions'; c.appendChild(title);const ul=document.createElement('ul'); ul.className='contrib';const items = Array.isArray(p.contributions) ? p.contributions : [p.contributions];items.forEach(txt=>{const li=document.createElement('li'); li.textContent=txt; ul.appendChild(li)});c.appendChild(ul);}
       if(p.tags && p.tags.length){ const tg=document.createElement('div'); tg.className='tags'; p.tags.forEach(t=>{const el=document.createElement('span'); el.className='tag'; el.textContent=t; tg.appendChild(el)}); c.appendChild(tg); }
       const row=document.createElement('div'); row.style.marginTop='6px';
       if(p.link){ const a=document.createElement('a'); a.href=p.link; a.target='_blank'; a.rel='noopener'; a.className='btn'; a.textContent='View project'; row.appendChild(a); }
