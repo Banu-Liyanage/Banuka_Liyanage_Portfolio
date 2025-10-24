@@ -82,6 +82,16 @@
     footer{padding:40px 0 80px;color:var(--text-dim)}
     .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;background:var(--bg-soft);border:1px solid var(--border);padding:0 6px;border-radius:6px}
   </style>
+<!-- ... your existing meta tags, title, OG tags, favicon etc ... -->
+
+  <!-- Google tag (gtag.js) — replace G-XXXX with your GA4 Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments)}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXX');
+  </script>
 </head>
 <body>
   <!-- ===================== CONFIG: Edit only the JSON below ===================== -->
